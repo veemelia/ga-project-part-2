@@ -5,14 +5,14 @@ const next = document.querySelector(".next");
 const mainImg = document.querySelector("#mainImg");
 const audio = document.querySelector("#audio");
 
-const playImg = "../public/play.png";
-const pauseImg = "../public/pause.png";
+const playImg = "public/play.png";
+const pauseImg = "public/pause.png";
 
 let isPlaying = false;
 
 const onLoad = () => {
   const songList = ["adaytoremember", "romantic", "thejazzpiano"];
-  audio.src = `../public/${
+  audio.src = `public/${
     songList[Math.floor(Math.random() * songList.length)]
   }.mp3`;
 };
