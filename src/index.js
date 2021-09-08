@@ -17,6 +17,7 @@ let index = Math.floor(Math.random() * songList.length);
 
 const setSong = () => {
   audio.src = songList[index];
+  slider.max = audio.duration;
 };
 
 // const togglePlay = () => {
@@ -24,7 +25,6 @@ mainBtn.addEventListener("click", () => {
   if (!isPlaying) {
     audio.play();
     isPlaying = true;
-    slider.max = audio.duration;
     mainImg.src = pauseImg;
   } else {
     audio.pause();
