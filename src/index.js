@@ -1,20 +1,26 @@
+const slider = document.querySelector(".slider");
+const previous = document.querySelector(".previous");
+const mainBtn = document.querySelector(".play");
+const next = document.querySelector(".next");
+const mainImg = document.querySelector("#mainImg");
 const audio = document.querySelector("#audio");
 
-const songList = ["adaytoremember", "romantic", "thejazzpiano"];
+const playImg = require("../public/play.png");
+const pauseImg = require("../public/pause.png");
+const aDayToRemember = require("url:../public/adaytoremember.mp3");
+const romantic = require("url:../public/romantic.mp3");
+const theJazzPiano = require("url:../public/thejazzpiano.mp3");
 
 let isPlaying = false;
+const songList = [aDayToRemember, romantic, theJazzPiano];
 let index = Math.floor(Math.random() * songList.length);
 
 const setSong = () => {
-  audio.src = `../public/${songList[index]}.mp3`;
+  audio.src = songList[index];
 };
 
-const togglePlay = () => {
-  const mainImg = document.querySelector("#mainImg");
-  const slider = document.querySelector(".slider");
-  const playImg = "../public/play.png";
-  const pauseImg = "../public/pause.png";
-
+// const togglePlay = () => {
+mainBtn.addEventListener("click", () => {
   if (!isPlaying) {
     audio.play();
     isPlaying = true;
@@ -28,7 +34,7 @@ const togglePlay = () => {
 
   audio.addEventListener("ended", () => {
     audio.currentTime = 0;
-    togglePlay();
+    next.click();
   });
 
   audio.addEventListener("timeupdate", () => {
@@ -38,9 +44,11 @@ const togglePlay = () => {
   slider.addEventListener("change", () => {
     audio.currentTime = slider.value;
   });
-};
+  // };
+});
 
-const previous = () => {
+// const previous = () => {
+previous.addEventListener("click", () => {
   index -= 1;
 
   if (index < 0) {
@@ -54,9 +62,11 @@ const previous = () => {
   } else {
     audio.play();
   }
-};
+  // };
+});
 
-const next = () => {
+// const next = () => {
+next.addEventListener("click", () => {
   index += 1;
 
   if (index === songList.length) {
@@ -70,6 +80,7 @@ const next = () => {
   } else {
     audio.play();
   }
-};
+  // };
+});
 
 window.onload = setSong();
